@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Abduraxmon Safarov | Python Django Developer</title>
+
+    <meta
+      name="description"
+      content="Abduraxmon Safarov — Junior Python Django Web Developer building modern websites and web applications."
+    />
+
+    <meta name="author" content="Abduraxmon Safarov" />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================
+           RESET
+        ========================================================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: #07090d;
+        color: #f4f7fb;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font-family: inherit;
+      }
+
+      ::selection {
+        background: #ffffff;
+        color: #07090d;
+      }
+
+      /* =========================================================
+           VARIABLES
+        ========================================================= */
+
+      :root {
+        --bg: #07090d;
+        --bg-soft: #0c1017;
+        --card: rgba(255, 255, 255, 0.045);
+        --card-hover: rgba(255, 255, 255, 0.075);
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #f4f7fb;
+        --muted: #8e98a8;
+        --accent: #8b5cf6;
+        --accent-2: #06b6d4;
+        --success: #34d399;
+      }
+
+      /* =========================================================
+           BACKGROUND
+        ========================================================= */
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -3;
+
+        background: radial-gradient(
+            circle at 15% 10%,
+            rgba(139, 92, 246, 0.16),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 85% 25%,
+            rgba(6, 182, 212, 0.11),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(139, 92, 246, 0.08),
+            transparent 35%
+          );
+
+        pointer-events: none;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        opacity: 0.18;
+        pointer-events: none;
+
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          );
+
+        background-size: 60px 60px;
+      }
+
+      /* =========================================================
+           CONTAINER
+        ========================================================= */
+
+      .container {
+        width: min(1180px, 92%);
+        margin: auto;
+      }
+
+      /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        background: rgba(7, 9, 13, 0.72);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      nav {
+        height: 78px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      .logo span {
+        color: #9ca3af;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: #9ba4b2;
+        font-size: 14px;
+        transition: 0.25s ease;
+      }
+
+      .nav-links a:hover {
+        color: white;
+      }
+
+      .nav-button {
+        padding: 11px 18px;
+
+        border: 1px solid var(--border);
+        border-radius: 12px;
+
+        font-size: 13px;
+        font-weight: 600;
+
+        background: rgba(255, 255, 255, 0.05);
+
+        transition: 0.25s ease;
+      }
+
+      .nav-button:hover {
+        background: white;
+        color: #07090d;
+        transform: translateY(-2px);
+      }
+
+      /* =========================================================
+           HERO
+        ========================================================= */
+
+      .hero {
+        min-height: 100vh;
+
+        display: flex;
+        align-items: center;
+
+        padding-top: 100px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 70px;
+        align-items: center;
+      }
+
+      .availability {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+
+        padding: 8px 13px;
+        margin-bottom: 25px;
+
+        border: 1px solid rgba(52, 211, 153, 0.2);
+        border-radius: 999px;
+
+        color: #a7f3d0;
+        background: rgba(52, 211, 153, 0.06);
+
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .status-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--success);
+        box-shadow: 0 0 15px rgba(52, 211, 153, 0.8);
+      }
+
+      .hero h1 {
+        font-family: "Space Grotesk", sans-serif;
+
+        font-size: clamp(48px, 7vw, 86px);
+        line-height: 0.98;
+        letter-spacing: -4px;
+
+        margin-bottom: 25px;
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          100deg,
+          #ffffff 0%,
+          #b7b9ff 45%,
+          #67e8f9 100%
+        );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-description {
+        max-width: 650px;
+
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.8;
+
+        margin-bottom: 32px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 13px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+
+        padding: 14px 21px;
+
+        border-radius: 13px;
+
+        font-size: 14px;
+        font-weight: 700;
+
+        transition: 0.3s ease;
+      }
+
+      .btn-primary {
+        background: white;
+        color: #08090c;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255, 255, 255, 0.12);
+      }
+
+      .btn-secondary {
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: white;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-3px);
+      }
+
+      /* =========================================================
+           HERO CARD
+        ========================================================= */
+
+      .hero-card {
+        position: relative;
+
+        padding: 1px;
+
+        border-radius: 28px;
+
+        background: linear-gradient(
+          145deg,
+          rgba(139, 92, 246, 0.65),
+          rgba(6, 182, 212, 0.3),
+          rgba(255, 255, 255, 0.05)
+        );
+
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+      }
+
+      .hero-card-inner {
+        min-height: 440px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        padding: 32px;
+
+        border-radius: 27px;
+
+        background: linear-gradient(
+          145deg,
+          rgba(20, 24, 34, 0.98),
+          rgba(8, 11, 17, 0.98)
+        );
+      }
+
+      .code-window {
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+
+        background: #090c12;
+      }
+
+      .window-top {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+
+        padding: 13px 15px;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .window-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #596273;
+      }
+
+      .code {
+        padding: 23px;
+
+        font-family: monospace;
+        font-size: 13px;
+        line-height: 1.9;
+
+        color: #aeb8c7;
+      }
+
+      .code .purple {
+        color: #c4b5fd;
+      }
+
+      .code .cyan {
+        color: #67e8f9;
+      }
+
+      .code .green {
+        color: #86efac;
+      }
+
+      .code .pink {
+        color: #f9a8d4;
+      }
+
+      .mini-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .mini-stat {
+        padding: 15px;
+
+        border: 1px solid var(--border);
+        border-radius: 14px;
+
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .mini-stat strong {
+        display: block;
+        font-family: "Space Grotesk";
+        font-size: 19px;
+      }
+
+      .mini-stat span {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      /* =========================================================
+           SECTION
+        ========================================================= */
+
+      section {
+        padding: 120px 0;
+      }
+
+      .section-header {
+        max-width: 680px;
+        margin-bottom: 50px;
+      }
+
+      .eyebrow {
+        margin-bottom: 12px;
+
+        color: #a78bfa;
+
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .section-title {
+        font-family: "Space Grotesk", sans-serif;
+
+        font-size: clamp(35px, 5vw, 55px);
+        line-height: 1.05;
+        letter-spacing: -2px;
+
+        margin-bottom: 17px;
+      }
+
+      .section-description {
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      /* =========================================================
+           ABOUT
+        ========================================================= */
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+      }
+
+      .glass-card {
+        padding: 30px;
+
+        border: 1px solid var(--border);
+        border-radius: 22px;
+
+        background: var(--card);
+
+        transition: 0.3s ease;
+      }
+
+      .glass-card:hover {
+        background: var(--card-hover);
+        transform: translateY(-4px);
+      }
+
+      .glass-card h3 {
+        font-family: "Space Grotesk";
+        margin-bottom: 15px;
+        font-size: 21px;
+      }
+
+      .glass-card p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      /* =========================================================
+           SKILLS
+        ========================================================= */
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+
+      .skill-card {
+        padding: 22px;
+
+        border: 1px solid var(--border);
+        border-radius: 18px;
+
+        background: var(--card);
+
+        transition: 0.3s ease;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(139, 92, 246, 0.45);
+      }
+
+      .skill-icon {
+        width: 43px;
+        height: 43px;
+
+        display: grid;
+        place-items: center;
+
+        margin-bottom: 17px;
+
+        border-radius: 12px;
+
+        background: rgba(139, 92, 246, 0.12);
+
+        font-size: 19px;
+      }
+
+      .skill-card h3 {
+        font-size: 15px;
+        margin-bottom: 8px;
+      }
+
+      .skill-card p {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      /* =========================================================
+           PROJECTS
+        ========================================================= */
+
+      .projects {
+        display: grid;
+        gap: 28px;
+      }
+
+      .project-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        overflow: hidden;
+
+        border: 1px solid var(--border);
+        border-radius: 25px;
+
+        background: var(--card);
+
+        transition: 0.4s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 255, 255, 0.17);
+      }
+
+      .project-visual {
+        min-height: 360px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 25px;
+
+        background: radial-gradient(
+            circle at 50% 40%,
+            rgba(139, 92, 246, 0.22),
+            transparent 50%
+          ),
+          #0a0d13;
+      }
+
+      .project-browser {
+        width: 100%;
+
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 15px;
+
+        overflow: hidden;
+
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+      }
+
+      .browser-bar {
+        display: flex;
+        gap: 6px;
+
+        padding: 10px;
+
+        background: #11151d;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .browser-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #555d6b;
+      }
+
+      .browser-content {
+        min-height: 245px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        padding: 28px;
+
+        background: linear-gradient(145deg, #161025, #0c1119);
+      }
+
+      .browser-content h4 {
+        font-family: "Space Grotesk";
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+
+      .browser-content p {
+        color: #9ca3af;
+        font-size: 12px;
+      }
+
+      .project-info {
+        padding: 40px;
+      }
+
+      .project-number {
+        color: #8b5cf6;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 2px;
+      }
+
+      .project-info h3 {
+        margin: 10px 0 14px;
+
+        font-family: "Space Grotesk";
+        font-size: 30px;
+        letter-spacing: -1px;
+      }
+
+      .project-info p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+
+        margin: 22px 0;
+      }
+
+      .tag {
+        padding: 7px 10px;
+
+        border: 1px solid var(--border);
+        border-radius: 8px;
+
+        background: rgba(255, 255, 255, 0.03);
+
+        color: #aeb6c4;
+        font-size: 11px;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .project-link {
+        padding: 10px 14px;
+
+        border: 1px solid var(--border);
+        border-radius: 10px;
+
+        font-size: 12px;
+        font-weight: 700;
+
+        transition: 0.25s;
+      }
+
+      .project-link:hover {
+        background: white;
+        color: black;
+      }
+
+      /* =========================================================
+           SERVICES
+        ========================================================= */
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      }
+
+      .service {
+        padding: 28px;
+
+        border: 1px solid var(--border);
+        border-radius: 20px;
+
+        background: var(--card);
+
+        transition: 0.3s;
+      }
+
+      .service:hover {
+        transform: translateY(-5px);
+        background: var(--card-hover);
+      }
+
+      .service h3 {
+        font-family: "Space Grotesk";
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .service p {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      /* =========================================================
+           EXPERIENCE / EDUCATION
+        ========================================================= */
+
+      .timeline {
+        display: grid;
+        gap: 14px;
+      }
+
+      .timeline-item {
+        padding: 26px;
+
+        border-left: 2px solid #8b5cf6;
+        border-radius: 0 17px 17px 0;
+
+        background: var(--card);
+      }
+
+      .timeline-item small {
+        color: #a78bfa;
+        font-weight: 700;
+      }
+
+      .timeline-item h3 {
+        margin: 5px 0 6px;
+
+        font-family: "Space Grotesk";
+      }
+
+      .timeline-item p {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      /* =========================================================
+           CTA
+        ========================================================= */
+
+      .cta {
+        position: relative;
+        overflow: hidden;
+
+        padding: 70px 50px;
+
+        border: 1px solid var(--border);
+        border-radius: 30px;
+
+        background: radial-gradient(
+            circle at 50% 0%,
+            rgba(139, 92, 246, 0.18),
+            transparent 55%
+          ),
+          rgba(255, 255, 255, 0.035);
+
+        text-align: center;
+      }
+
+      .cta h2 {
+        font-family: "Space Grotesk";
+        font-size: clamp(35px, 5vw, 58px);
+        letter-spacing: -2px;
+        margin-bottom: 15px;
+      }
+
+      .cta p {
+        max-width: 600px;
+        margin: 0 auto 27px;
+
+        color: var(--muted);
+      }
+
+      /* =========================================================
+           FOOTER
+        ========================================================= */
+
+      footer {
+        padding: 35px 0;
+
+        border-top: 1px solid var(--border);
+
+        color: #717b8b;
+        font-size: 12px;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 18px;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      /* =========================================================
+           REVEAL ANIMATION
+        ========================================================= */
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(25px);
+
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-grid,
+        .about-grid,
+        .project-card {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-card {
+          max-width: 650px;
+          margin: auto;
+        }
+
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        section {
+          padding: 85px 0;
+        }
+
+        .hero {
+          padding-top: 120px;
+        }
+
+        .hero h1 {
+          font-size: 48px;
+          letter-spacing: -2px;
+        }
+
+        .hero-description {
+          font-size: 15px;
+        }
+
+        .hero-card-inner {
+          min-height: auto;
+          padding: 20px;
+        }
+
+        .mini-stats {
+          grid-template-columns: 1fr;
+          margin-top: 15px;
+        }
+
+        .skills-grid,
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .project-info {
+          padding: 27px;
+        }
+
+        .project-info h3 {
+          font-size: 25px;
+        }
+
+        .cta {
+          padding: 45px 25px;
+        }
+
+        .footer-content {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =============================================================
+     NAVBAR
+============================================================= -->
+
+    <header>
+      <div class="container">
+        <nav>
+          <a href="#home" class="logo"> AS<span>.</span> </a>
+
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#education">Education</a></li>
+          </ul>
+
+          <a href="#contact" class="nav-button"> Let's Talk </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- =============================================================
+     HERO
+============================================================= -->
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="reveal">
+              <div class="availability">
+                <span class="status-dot"></span>
+                Available for freelance projects
+              </div>
+
+              <h1>
+                Building
+                <span class="gradient-text"> digital products </span>
+                with Python.
+              </h1>
+
+              <p class="hero-description">
+                I'm Abduraxmon Safarov, a Junior Python/Django Web Developer
+                from Bukhara, Uzbekistan. I build modern, responsive websites
+                and custom web applications for businesses and individual
+                clients.
+              </p>
+
+              <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary"> View My Work → </a>
+
+                <a href="#contact" class="btn btn-secondary"> Contact Me </a>
+              </div>
+            </div>
+
+            <div class="hero-card reveal">
+              <div class="hero-card-inner">
+                <div class="code-window">
+                  <div class="window-top">
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                  </div>
+
+                  <div class="code">
+                    <div>
+                      <span class="purple">developer</span>
+                      =
+                      <span class="cyan"> "Abduraxmon Safarov" </span>
+                    </div>
+
+                    <div>
+                      <span class="purple">stack</span>
+                      =
+                      <span class="green"> ["Python", "Django"] </span>
+                    </div>
+
+                    <div>
+                      <span class="purple">frontend</span>
+                      =
+                      <span class="green"> ["HTML", "CSS", "Bootstrap"] </span>
+                    </div>
+
+                    <div>
+                      <span class="purple">database</span>
+                      =
+                      <span class="green"> "SQLite" </span>
+                    </div>
+
+                    <div>
+                      <span class="purple">status</span>
+                      =
+                      <span class="pink"> "Building" </span>
+                    </div>
+
+                    <br />
+
+                    <div>
+                      <span class="cyan"> return </span>
+                      "Let's build something great."
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mini-stats">
+                  <div class="mini-stat">
+                    <strong>Python</strong>
+                    <span>Backend</span>
+                  </div>
+
+                  <div class="mini-stat">
+                    <strong>Django</strong>
+                    <span>Framework</span>
+                  </div>
+
+                  <div class="mini-stat">
+                    <strong>2+</strong>
+                    <span>Projects</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================================
+     ABOUT
+============================================================= -->
+
+      <section id="about">
+        <div class="container">
+          <div class="section-header reveal">
+            <div class="eyebrow">About me</div>
+
+            <h2 class="section-title">
+              Developer focused on practical solutions.
+            </h2>
+
+            <p class="section-description">
+              I enjoy turning ideas into functional, responsive web applications
+              that people can actually use.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <div class="glass-card reveal">
+              <h3>Who I Am</h3>
+
+              <p>
+                I'm a Junior Python/Django Web Developer currently studying
+                Information Technology at Osiyo Xalqaro Universiteti in Bukhara.
+              </p>
+
+              <br />
+
+              <p>
+                My main focus is Python and Django development, responsive
+                frontend interfaces, databases, authentication and API
+                integration.
+              </p>
+            </div>
+
+            <div class="glass-card reveal">
+              <h3>What I Build</h3>
+
+              <p>
+                I create business websites, custom Django applications,
+                database-driven systems, responsive interfaces and project demos
+                for businesses and individual clients.
+              </p>
+
+              <br />
+
+              <p>
+                I'm also interested in AI-powered web applications and modern
+                digital products.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================================
+     SKILLS
+============================================================= -->
+
+      <section id="skills">
+        <div class="container">
+          <div class="section-header reveal">
+            <div class="eyebrow">Technical skills</div>
+
+            <h2 class="section-title">Tools I use to build.</h2>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skill-card reveal">
+              <div class="skill-icon">🐍</div>
+              <h3>Python</h3>
+              <p>Backend development and application logic.</p>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon">◆</div>
+              <h3>Django</h3>
+              <p>Web applications and database-driven systems.</p>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon">⌘</div>
+              <h3>HTML5</h3>
+              <p>Semantic and structured web interfaces.</p>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon">✦</div>
+              <h3>CSS3</h3>
+              <p>Modern responsive layouts and styling.</p>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon">B</div>
+              <h3>Bootstrap</h3>
+              <p>Responsive and mobile-friendly interfaces.</p>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon">DB</div>
+              <h3>SQLite</h3>
+              <p>Database models and application data.</p>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon">API</div>
+              <h3>API Integration</h3>
+              <p>Connecting applications with external services.</p>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon">⌘</div>
+              <h3>Git & GitHub</h3>
+              <p>Source control and project management.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================================
+     PROJECTS
+============================================================= -->
+
+      <section id="projects">
+        <div class="container">
+          <div class="section-header reveal">
+            <div class="eyebrow">Selected work</div>
+
+            <h2 class="section-title">Projects I've built.</h2>
+
+            <p class="section-description">
+              Real projects that demonstrate my development skills and approach
+              to building web applications.
+            </p>
+          </div>
+
+          <div class="projects">
+            <!-- CINEVERSE -->
+
+            <article class="project-card reveal">
+              <div class="project-visual">
+                <div class="project-browser">
+                  <div class="browser-bar">
+                    <span class="browser-dot"></span>
+                    <span class="browser-dot"></span>
+                    <span class="browser-dot"></span>
+                  </div>
+
+                  <div class="browser-content">
+                    <h4>CineVerse</h4>
+
+                    <p>Django Movie Web Application</p>
+
+                    <br />
+
+                    <span class="tag"> LIVE </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-info">
+                <span class="project-number"> PROJECT 01 </span>
+
+                <h3>CineVerse</h3>
+
+                <p>
+                  A responsive movie web application built with Python and
+                  Django. The project includes user authentication, favorites,
+                  movie details, filtering, database functionality and
+                  responsive Bootstrap components.
+                </p>
+
+                <div class="tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Django</span>
+                  <span class="tag">Bootstrap</span>
+                  <span class="tag">SQLite</span>
+                  <span class="tag">HTML5</span>
+                  <span class="tag">CSS3</span>
+                </div>
+
+                <div class="project-links">
+                  <a
+                    href="https://cineverse-ksqg.onrender.com"
+                    target="_blank"
+                    class="project-link"
+                  >
+                    Live Demo ↗
+                  </a>
+
+                  <!-- Replace this with your GitHub repository -->
+                  <a href="#" class="project-link" onclick="githubAlert(event)">
+                    GitHub ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- PRESENTAI -->
+
+            <article class="project-card reveal">
+              <div class="project-visual">
+                <div class="project-browser">
+                  <div class="browser-bar">
+                    <span class="browser-dot"></span>
+                    <span class="browser-dot"></span>
+                    <span class="browser-dot"></span>
+                  </div>
+
+                  <div
+                    class="browser-content"
+                    style="
+                      background: linear-gradient(145deg, #101827, #10101b);
+                    "
+                  >
+                    <h4>PresentAI</h4>
+
+                    <p>AI Presentation Generator</p>
+
+                    <br />
+
+                    <span class="tag"> DEMO VERSION </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-info">
+                <span class="project-number"> PROJECT 02 </span>
+
+                <h3>PresentAI</h3>
+
+                <p>
+                  A presentation generator demo built with Python and Django.
+                  Users can enter a topic, select slide count and choose a
+                  presentation language.
+                </p>
+
+                <div class="tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Django</span>
+                  <span class="tag">AI APIs</span>
+                  <span class="tag">Bootstrap</span>
+                  <span class="tag">HTML5</span>
+                </div>
+
+                <div class="project-links">
+                  <a
+                    href="http://127.0.0.1:8000/"
+                    target="_blank"
+                    class="project-link"
+                  >
+                    Live Demo ↗
+                  </a>
+
+                  <a href="#" class="project-link" onclick="githubAlert(event)">
+                    GitHub ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================================
+     SERVICES
+============================================================= -->
+
+      <section id="services">
+        <div class="container">
+          <div class="section-header reveal">
+            <div class="eyebrow">Services</div>
+
+            <h2 class="section-title">What I can build for you.</h2>
+
+            <p class="section-description">
+              Practical web development services for businesses, individuals and
+              digital projects.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <div class="service reveal">
+              <h3>Business Websites</h3>
+              <p>
+                Professional responsive websites for businesses, organizations
+                and personal brands.
+              </p>
+            </div>
+
+            <div class="service reveal">
+              <h3>Django Applications</h3>
+              <p>
+                Custom web applications with authentication, databases, forms
+                and dynamic functionality.
+              </p>
+            </div>
+
+            <div class="service reveal">
+              <h3>Responsive Design</h3>
+              <p>
+                Interfaces designed to work across desktop, tablet and mobile
+                devices.
+              </p>
+            </div>
+
+            <div class="service reveal">
+              <h3>API Integration</h3>
+              <p>
+                Connecting web applications with external APIs and third-party
+                services.
+              </p>
+            </div>
+
+            <div class="service reveal">
+              <h3>Bug Fixing</h3>
+              <p>
+                Finding and resolving Django, frontend and deployment-related
+                issues.
+              </p>
+            </div>
+
+            <div class="service reveal">
+              <h3>Website Deployment</h3>
+              <p>
+                Preparing web applications for online deployment and
+                troubleshooting production issues.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================================
+     EDUCATION
+============================================================= -->
+
+      <section id="education">
+        <div class="container">
+          <div class="section-header reveal">
+            <div class="eyebrow">Background</div>
+
+            <h2 class="section-title">Education & development.</h2>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item reveal">
+              <small> 2026 — PRESENT </small>
+
+              <h3>Osiyo Xalqaro Universiteti</h3>
+
+              <p>
+                Bachelor's Degree — Information Technology
+                <br />
+                Bukhara, Uzbekistan
+              </p>
+            </div>
+
+            <div class="timeline-item reveal">
+              <small> SEPTEMBER 2026 </small>
+
+              <h3>Monday Labs Academy</h3>
+
+              <p>Python & Django Web Development Certificate</p>
+            </div>
+
+            <div class="timeline-item reveal">
+              <small> CURRENT </small>
+
+              <h3>Continuous Development</h3>
+
+              <p>
+                Building personal projects, improving Django development skills
+                and working toward freelance web development projects.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================================
+     CTA / CONTACT
+============================================================= -->
+
+      <section id="contact">
+        <div class="container">
+          <div class="cta reveal">
+            <div class="eyebrow">Let's work together</div>
+
+            <h2>Have a project in mind?</h2>
+
+            <p>
+              I'm available for freelance website development, Django
+              applications and web development collaborations.
+            </p>
+
+            <div class="hero-buttons" style="justify-content: center">
+              <a
+                href="mailto:safarovabduraxmin@gmail.com"
+                class="btn btn-primary"
+              >
+                Email Me →
+              </a>
+
+              <!-- Replace # with your real Upwork profile -->
+              <a
+                href="#"
+                class="btn btn-secondary"
+                onclick="upworkAlert(event)"
+              >
+                Upwork Profile ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =============================================================
+     FOOTER
+============================================================= -->
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            © <span id="year"></span>
+            Abduraxmon Safarov. All rights reserved.
+          </div>
+
+          <div class="footer-links">
+            <a href="mailto:safarovabduraxmin@gmail.com"> Email </a>
+
+            <!-- Replace # with your GitHub -->
+            <a href="#" onclick="githubAlert(event)"> GitHub </a>
+
+            <!-- Replace # with your Upwork -->
+            <a href="#" onclick="upworkAlert(event)"> Upwork </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =============================================================
+     JAVASCRIPT
+============================================================= -->
+
+    <script>
+      /* Current year */
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      /* Reveal animations */
+      const revealElements = document.querySelectorAll(".reveal");
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+            }
+          });
+        },
+        {
+          threshold: 0.12,
+        }
+      );
+
+      revealElements.forEach((element) => {
+        revealObserver.observe(element);
+      });
+
+      /* Temporary GitHub button */
+      function githubAlert(event) {
+        event.preventDefault();
+
+        alert("Replace this button with your GitHub repository URL.");
+      }
+
+      /* Temporary Upwork button */
+      function upworkAlert(event) {
+        event.preventDefault();
+
+        alert("Replace this button with your Upwork profile URL.");
+      }
+    </script>
+  </body>
+</html>
